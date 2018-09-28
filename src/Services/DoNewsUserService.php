@@ -24,20 +24,21 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
 
         $user = User::check($token);
 
-        switch ($user) {
-            case -1:
-                if ($login) throw new DoNewsUserException("Token is not valid ", 401);
-                break;
-            case 0:
-                if ($login) throw new DoNewsUserException("you need to login in first", 404);
-                break;
-            case 1:
-                if ($login) throw new DoNewsUserException("This account is already logged in elsewhere", 410);
-                break;
-            default:
-                $this->user = $user;
-                break;
+        if ($login) {
+            if ($user === -1) {
+                throw new DoNewsUserException("Token is not valid ", 401);
+            }
+
+            if ($user === 0) {
+                throw new DoNewsUserException("you need to login in first", 404);
+            }
+
+            if ($user === 1) {
+                throw new DoNewsUserException("This account is already logged in elsewhere", 410);
+            }
         }
+
+        $this->user = $user ?: null;
     }
 
     public function info()
