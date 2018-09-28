@@ -4,14 +4,16 @@
     "keywords": ["laravel","composer","donews"],
     "homepage": "https://packagist.org/packages/fangxu/donews-user",
     "type": "library",
-    "version" : "v1.0.1",
+    "version" : "v1.0.0",
     "license": "MIT",
     "autoload": {
         "psr-4": {
             "Fangxu\\Donews\\": "src/"
         }
     },
-    "require" : {},
+    "require" : {
+        "predis/predis": "^1.1"
+    },
     "extra": {
         "laravel": {
             "providers": [
