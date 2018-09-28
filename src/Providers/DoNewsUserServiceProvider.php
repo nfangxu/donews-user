@@ -13,7 +13,7 @@ use Fangxu\Donews\Contracts\DoNewsUser;
 use Fangxu\Donews\Services\DoNewsUserService;
 use \Illuminate\Support\ServiceProvider;
 
-class DoNewUserServiceProvider extends ServiceProvider
+class DoNewsUserServiceProvider extends ServiceProvider
 {
 
     /**
