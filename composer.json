@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Fangxu\\Donews\\Providers\\DoNewUserServiceProvider"
+                "Fangxu\\Donews\\Providers\\DoNewsUserServiceProvider"
             ]
         }
     }, 
