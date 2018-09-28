@@ -2,7 +2,7 @@
     "name": "fangxu/donews-user",
     "description": "DoNews User",
     "keywords": ["laravel","composer","donews"],
-    "homepage": "https://packagist.org/packages/nfangxu/donews-user",
+    "homepage": "https://packagist.org/packages/fangxu/donews-user",
     "type": "library",
     "version" : "v1.0.1",
     "license": "MIT",
