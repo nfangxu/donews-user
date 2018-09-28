@@ -1,0 +1,29 @@
+{
+    "name": "nfangxu/donews-user",
+    "description": "DoNews User",
+    "keywords": ["laravel","composer","donews"],
+    "homepage": "https://packagist.org/packages/nfangxu/donews-user",
+    "type": "library",
+    "version" : "v1.0.1",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Fangxu\\Donews\\": "src/"
+        }
+    },
+    "require" : {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fangxu\\Donews\\Providers\\DoNewUserServiceProvider"
+            ]
+        }
+    }, 
+    "authors": [
+        {
+          "name": "nfangxu",
+          "email": "nfangxu@gmail.com",
+          "homepage": "https://nfangxu.com"
+        }
+    ]
+}
