@@ -7,3 +7,17 @@
 
 ## 注意
 > 使用前需要先注册服务: 在 `App\Providers\AppServiceProvider` 下 `register()` 方法中添加 `$this->app->register(DoNewsUserServiceProvider::class);`,  使用 `use Fangxu\Donews\Providers\DoNewsUserServiceProvider;`
+> `config/database.php` 下添加 `redis` 配置
+```
+...
+"redis" => [
+	'client' => 'predis',
+	...
+ 	'donews-user' => [
+            "host" => env("USER_TOKEN_REDIS_HOST", '127.0.0.1'),
+            "password" => env("USER_TOKEN_REDIS_PASSWORD", null),
+            "port" => env("USER_TOKEN_REDIS_PORT", 6379),
+            "database" => env("USER_TOKEN_REDIS_DB", 0),
+        ],
+]
+```
