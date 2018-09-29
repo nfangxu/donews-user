@@ -27,7 +27,7 @@ class User
             return -1;
         }
 
-        $redisToken = Redis::get(request("app_id") . ":login:" . $user->id);
+        $redisToken = Redis::connection("donews-user")->get(strtolower(request("app_id")) . ":login:" . $user->id);
 
         if (!$redisToken) {
             return 0;
@@ -44,7 +44,7 @@ class User
     {
         $token = static::encode(json_encode($user), static::config()["key"]);
 
-        Redis::set(request("app_id") . ":login:" . $user->id, $token);
+        Redis::connection("donews-user")->set(strtolower(request("app_id")) . ":login:" . $user->id, $token);
 
         return $token;
     }
