@@ -38,7 +38,7 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
             }
         }
 
-        $this->user = $user ?: null;
+        $this->user = is_object($user) ? $user : null;
     }
 
     public function info()
