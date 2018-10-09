@@ -5,6 +5,19 @@
 - 获取用户信息(必须登录)
 	- 注入 `DoNewsLoginUser::class` , 未登录用户会抛出 `DoNewsUserException` 异常 , 使用方法同上
 
+## example
+```php
+# user must login
+Route::get("UserNeedLogin", function (\Fangxu\Donews\Contracts\DoNewsLoginUser $user) {
+    dd("ID: " . $user->id());
+});
+
+# user can not login
+Route::get("UserMayNotLogin", function (\Fangxu\Donews\Contracts\DoNewsUser $user) {
+    dd("ID: " . $user->id());
+});
+```
+
 ## 注意
 - 安装完之后, 如果无法正常发现包, 使用命令 `composer dumpautoload` 来自动发现
 - `config/database.php` 下添加 `redis` 配置
