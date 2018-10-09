@@ -26,11 +26,11 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
 
         if ($login) {
             if ($user === -1) {
-                throw new DoNewsUserException("Token is not valid ", 401);
+                throw new DoNewsUserException("Token is not valid", 401);
             }
 
             if ($user === 0) {
-                throw new DoNewsUserException("you need to login in first", 404);
+                throw new DoNewsUserException("You need to login in first", 404);
             }
 
             if ($user === 1) {
