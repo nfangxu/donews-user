@@ -21,6 +21,10 @@ class User
 
     public static function check($token)
     {
+        if (!$token) {
+            return 0;
+        }
+        
         $user = static::decode($token);
 
         if (!$user) {
