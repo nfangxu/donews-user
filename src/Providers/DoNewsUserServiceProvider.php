@@ -46,7 +46,10 @@ class DoNewsUserServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [DoNewsUserService::class];
+        return [
+            DoNewsUser::class,
+            DoNewsLoginUser::class
+        ];
     }
 
 }
