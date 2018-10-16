@@ -14,7 +14,7 @@ class User
 {
     protected static function getAppId($app_id = null)
     {
-        $headerAppId = request()->header("app_id");
+        $headerAppId = request()->header("appid");
         
         $return = $app_id ?: $headerAppId;
         
