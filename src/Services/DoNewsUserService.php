@@ -26,15 +26,15 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
 
         if ($login) {
             if ($user === -1) {
-                throw new DoNewsUserException("Token is not valid", 401);
+                throw new DoNewsUserException("非法的 Token 值", 401);
             }
 
             if ($user === 0) {
-                throw new DoNewsUserException("You need to login in first", 404);
+                throw new DoNewsUserException("请先登录", 404);
             }
 
             if ($user === 1) {
-                throw new DoNewsUserException("This account is already logged in elsewhere", 410);
+                throw new DoNewsUserException("该账户已在别处登录, 请重新登录", 410);
             }
         }
 
