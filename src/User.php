@@ -47,7 +47,7 @@ class User
         }
 
         if ($redisToken != $token) {
-            return 1;
+            // return 1;
         }
 
         return $user;
