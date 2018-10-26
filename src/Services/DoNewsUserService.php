@@ -34,7 +34,7 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
             }
 
             if ($user === 1) {
-                // throw new DoNewsUserException("该账户已在别处登录, 请重新登录", 410);
+                throw new DoNewsUserException("该账户已在别处登录, 请重新登录", 410);
             }
         }
 
