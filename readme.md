@@ -36,3 +36,25 @@ Route::get("UserMayNotLogin", function (\Fangxu\Donews\Contracts\DoNewsUser $use
         ],
 ]
 ```
+- 如果使用集群Redis, 则需要在 `config/database.php` 下添加以下 `redis` 配置
+```
+...
+"redis" => [
+	'client' => 'predis',
+	...
+	"options" => [
+            "cluster" => "redis",
+        ],
+ 	'donews-user' => [
+            [
+            	"host" => env("USER_TOKEN_REDIS_CLUSTER_01_HOST", '127.0.0.1'),
+            	"port" => env("USER_TOKEN_REDIS_CLUSTER_01_PORT", 6379),
+            ],
+	    [
+            	"host" => env("USER_TOKEN_REDIS_CLUSTER_02_HOST", '127.0.0.1'),
+            	"port" => env("USER_TOKEN_REDIS_CLUSTER_02_PORT", 6379),
+            ],
+	    ...
+        ],
+]
+```
