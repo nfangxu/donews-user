@@ -2,6 +2,10 @@
 
 > 未登录用户会抛出 `DoNewsUserException` 
 
+## 环境变量配置
+- Token加密密钥: `DONEWS_USER_TOKEN_KEY`, 默认: `1234567890123456`
+- Token过期天数: `DONEWS_USER_TOKEN_EXPIRED_DAYS`, 默认: `7` 
+
 ## example
 
 ```php
