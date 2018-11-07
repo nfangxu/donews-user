@@ -8,6 +8,7 @@
 
 namespace Fangxu\Donews;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redis;
 
 class User
@@ -15,16 +16,17 @@ class User
     protected static function getAppId($app_id = null)
     {
         $headerAppId = request()->header("appid");
-        
-        $return = $app_id ?: $headerAppId;
-        
+
+        $return = $headerAppId ?: $app_id;
+
         return strtolower($return);
     }
-    
+
     protected static function config()
     {
         return [
             "key" => env("DONEWS_USER_TOKEN_KEY", "1234567890123456"),
+            "expired" => env("DONEWS_USER_TOKEN_EXPIRED_DAYS", 7),
         ];
     }
 
@@ -33,11 +35,15 @@ class User
         if (!$token) {
             return 0;
         }
-        
+
         $user = static::decode($token);
 
         if (!$user) {
             return -1;
+        }
+
+        if (!isset($user->expired_at) || $user->expired_at < Carbon::now("PRC")->timestamp) {
+            return 1;
         }
 
         $redisToken = Redis::connection("donews-user")->get(static::getAppId(request("app_id")) . ":login:" . $user->id);
@@ -46,18 +52,20 @@ class User
             return 0;
         }
 
-        if ($redisToken != $token) {
-            // return 1;
-        }
-
         return $user;
     }
 
     public static function token($user)
     {
+        if (is_object($user)) {
+            $user = $user->toArray();
+        }
+
+        $user["expired_at"] = static::config()["expired"] * 24 * 60 + Carbon::now("PRC")->timestamp;
+
         $token = static::encode(json_encode($user), static::config()["key"]);
 
-        Redis::connection("donews-user")->set(static::getAppId(request("app_id")) . ":login:" . $user->id, $token);
+        Redis::connection("donews-user")->set(static::getAppId(request("app_id")) . ":login:" . $user["id"], $token);
 
         return $token;
     }
