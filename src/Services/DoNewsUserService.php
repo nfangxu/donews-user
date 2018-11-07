@@ -22,6 +22,10 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
     {
         $token = request()->header("token");
 
+        if (!$token) {
+            throw new DoNewsUserException("请先登录", 404);
+        }
+
         $user = User::check($token);
 
         if ($login) {
@@ -34,7 +38,7 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
             }
 
             if ($user === 1) {
-                throw new DoNewsUserException("该账户已在别处登录, 请重新登录", 410);
+                throw new DoNewsUserException("登录已过期, 请重新登录", 410);
             }
         }
 
