@@ -22,7 +22,7 @@ class DoNewsUserService implements DoNewsUser, DoNewsLoginUser
     {
         $token = request()->header("token");
 
-        if (!$token) {
+        if ($login && !$token) {
             throw new DoNewsUserException("请先登录", 404);
         }
 
