@@ -61,7 +61,7 @@ class User
             $user = $user->toArray();
         }
 
-        $user["expired_at"] = static::config()["expired"] * 24 * 60 + Carbon::now("PRC")->timestamp;
+        $user["expired_at"] = static::config()["expired"] * 24 * 60 * 60 + Carbon::now("PRC")->timestamp;
 
         $token = static::encode(json_encode($user), static::config()["key"]);
 
