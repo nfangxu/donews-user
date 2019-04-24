@@ -25,8 +25,8 @@ class User
     protected static function config()
     {
         return [
-            "key" => env("DONEWS_USER_TOKEN_KEY", "1234567890123456"),
-            "expired" => env("DONEWS_USER_TOKEN_EXPIRED_DAYS", 7),
+            "key" => config("services.donews_user.key"),
+            "expired" => config("services.donews_user.expired_days"),
         ];
     }
 
